@@ -17,45 +17,62 @@ function App() {
   const [graduated, setGraduated] = useState(false);
 
  function handleImage(e) {
-  return (
     setImage(e.target.value)
-  )}
+  }
 
  function handlePhone(e) {
-  return (
     setPhone(e.target.value)
-  )}
+  }
 
  function handleEmail(e) {
-  return (
     setEmail(e.target.value)
-  )}
+  }
 
  function handleProgram(e) {
-  return (
     setProgram(e.target.value)
-  )}
+  }
 
  function handleGraduationYear(e) {
-  return (
     setGraduationYear(e.target.value)
-  )}
+  }
 
  function handleGraduated(e) {
-  return (
     setGraduated(e.target.value)
-  )}
+  }
 
  function handleFullName(e) {
-  return (
     setFullName(e.target.value)
-  )}
+  }
+  
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const newStudent = {
+      fullName,
+      email,
+      phone,
+      program,
+      image,
+      graduationYear,
+      graduated
+    }
+    setStudents(() => [...students, newStudent])
+    setFullName("");
+    setImage("");
+    setPhone("");
+    setEmail("");
+    setProgram("");
+    setGraduationYear(2023);
+    setGraduated(false);
+
+  }
+
   return (
     <div className="App pt-20">
       <Navbar />
 
       {/* FORM */}
-      <form>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <span>Add a Student</span>
         <div>
           <label>
@@ -110,7 +127,7 @@ function App() {
             <input name="graduated" type="checkbox" checked={graduated} onChange={(e) => handleGraduated(e)}/>
           </label>
 
-          <button type="submit" >Add Student</button>
+          <button type="submit">Add Student</button>
         </div>
 
       </form>
